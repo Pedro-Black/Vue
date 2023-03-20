@@ -1,47 +1,35 @@
 <script setup>
-    const nome = 'João'
-    const idade = 25
+    import { ref, onMounted } from 'vue'
 
-    function inverter(texto) {
-        return texto.split('').reverse().join('')
-    }
+  const contador = ref(0)
 
-    function inverterMaiusculo(texto) {
-        const invertido = inverter(texto)
-        return invertido.toUpperCase()
-    }
+  function incrementarContador() {
+  contador.value++
+  }
 
-    function saudacao(){
-      return `Olá, ${nome}!`
-    }
+  function decrementarContador() {
+  contador.value--
+  }
+
+onMounted(() => {
+  console.log(`O valor inicial do contador é ${contador.value}.`)
+})
+
+
 </script>
 
 <template>
-    <div class="info">
-        <h1>Exemplo 1 - Mostrando informações na tela</h1>
-        <p>Nome: {{ nome }} </p>
-        <p>Idade: {{ idade }}  anos</p>
-        <hr />
-        <p>Para completar 50 anos faltam: {{ 50 - idade }}  anos</p>
-        <p>O nome tem {{ nome.length }}  caracteres</p>
-        <p>O nome invertido em maiúsculas é: {{ inverterMaiusculo(nome) }} </p>
-        <hr />Exemplo 1 - Mostrando informações na tela
-Nome: João
-
-Idade: 25 anos
-
-Para completar 50 anos faltam: 25 anos
-
-O nome tem 4 caracteres
-
-O nome invertido em maiúsculas é: OÃOJ
-
-Exemplo de saudação usando função
-
-Olá, João!
-        <p> Exemplo de saudação usando função</p>
-        <p> {{ saudacao() }}  </p>
-    </div>
+  <div>
+    <button @click="incrementarContador">Incrementar</button>
+    <button @click="decrementarContador">Decrementar</button>
+    <p>Valor do contador é: {{ contador }}</p>
+  </div>
+  <br>
+  <div>
+    <button @click="incrementarContador">Incrementar</button>
+    <button @click="decrementarContador">Decrementar</button>
+    <p>Valor do contador é: {{ contador }}</p>
+  </div>
 </template>
 
 <style scoped>
@@ -57,4 +45,9 @@ h1 {
   font-weight: bold;
   font-size: 1.5em;
 }
+
+button {
+  font-weight: bold;
+}
+
 </style>
